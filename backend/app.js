@@ -27,6 +27,17 @@ app.use(express.json()); //extended is set as true by default in newer versions 
 app.get("/", (req, res) => {
   res.send("Test the port");
 });
+// Allow CORS to all
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "OPTIONS, GET, POST, PUT, PATCH, DELETE" // what matters here is that OPTIONS is present
+  );
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  next();
+});
+
 //post request handler to add a new emplouee to the database
 app.post("/add-employee", (req, res) => {
   //console.log(req.body);
@@ -48,7 +59,8 @@ app.post("/add-employee", (req, res) => {
 app.post("/login", (req, res) => {
   console.log(req.body);
   // write the sql query to retrieve the employee with the email and password provided by the user and compare it with the data in the database
-  const sql = `SELECT * FROM employee_test WHERE email='${req.body.email}' AND password = '${req.body.password}'`;
+  const sql = `SELECT * FROM employee_test WHERE email= '${req.body.email}' AND password = '${req.body.password}'`;
+  // const sql = `SELECT * FROM employee_test WHERE email = '${req.body.email}' AND password = '${req.body.password}'`;
   connection.query(sql, function (err, result) {
     if (err) throw err;
     console.log(result);
@@ -68,16 +80,7 @@ app.post("/login", (req, res) => {
   });
 });
 
-// Allow CORS to all
-app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "OPTIONS, GET, POST, OPTIONS, PUT, PATCH, DELETE"
-  );
-  res, setHeader("Access-Control_Allow_Headers", "Content-Type, Authorization");
-  next();
-});
+
 
 const port = 4000;
 // how to setup a listener for express port
