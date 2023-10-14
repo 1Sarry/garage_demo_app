@@ -9,8 +9,7 @@ const app = express();
 
 //Define connection parameters for the database
 const dbConfig = {
-  connectionLimit: 10,
-  password: ".",
+  password: "AbeGarageSarry",
   user: "root",
   database: "demo_app",
 };

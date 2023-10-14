@@ -16,7 +16,7 @@ export const AddEmployee = () => {
       email: email,
       password: password,
     };
-    const apiUrl = "http://localhost:4000/add-employee";
+    const apiUrl = "http://23.22.225.6:4000/add-employee";
     const requestOptions = {
       method: "POST",
       headers: { "Content-Type": "application/json" },

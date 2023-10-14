@@ -12,7 +12,7 @@ function Login() {
     };
     console.log(loginData);
     // send data to the server
-    const apiUrl = "http://localhost:4000/login";
+    const apiUrl = "http://23.22.225.6:4000/login";
 
     const requestOptions = {
       method: "POST",
